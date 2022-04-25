@@ -8,7 +8,7 @@ class Ventana(object):
     __x_inf_der = None
     __y_inf_der = None
 
-    def __init__(self, titulo, x_sup_izq=0, y_sup_izq=0, x_inf_der=500, y_inf_der=500):
+    def __init__(self, titulo, x_sup_izq=100, y_sup_izq=100, x_inf_der=400, y_inf_der=400):
         
         if self._validar_datos(x_sup_izq, y_sup_izq, x_inf_der, y_inf_der):
 
@@ -60,28 +60,38 @@ class Ventana(object):
 
     def moverDerecha(self, unidades=1):
         nuevo_x_sup_izq = self.__x_sup_izq + unidades
-        if nuevo_x_sup_izq >= self.__x_inf_der:
-            raise Exception('El valor de x del vértice superior izquierdo debe ser menor al valor de x del vértice inferior derecho')
+        nuevo_x_inf_der = self.__x_inf_der + unidades
+        if nuevo_x_inf_der > 500:
+            raise Exception('Ventana fuera de rango')
         else:
             self.__x_sup_izq = nuevo_x_sup_izq
+            self.__x_inf_der = nuevo_x_inf_der
 
     def moverIzquierda(self, unidades=1):
+        nuevo_x_sup_izq = self.__x_sup_izq - unidades
         nuevo_x_inf_der = self.__x_inf_der - unidades
-        if nuevo_x_inf_der <= self.__x_sup_izq:
-            raise Exception('El valor de x del vértice inferior derecho debe ser mayor al valor de x del vértice superior izquierdo')
+
+        if nuevo_x_sup_izq < 0:
+            raise Exception('Ventana fuera de rango')
         else:
             self.__x_inf_der = nuevo_x_inf_der
 
     def bajar(self, unidades=1):
         nuevo_y_sup_izq = self.__y_sup_izq + unidades
-        if nuevo_y_sup_izq >= self.__y_inf_der:
-            raise Exception('El valor de y del vértice superior izquierdo debe ser menor al valor de y del vértice inferior derecho')
+        nuevo_y_inf_der = self.__y_inf_der + unidades
+
+        if nuevo_y_inf_der > 500:
+            raise Exception('Ventana fuera de rango')
         else:
             self.__y_sup_izq = nuevo_y_sup_izq
+            self.__y_inf_der = nuevo_y_inf_der
 
     def subir(self, unidades=1):
+        nuevo_y_sup_izq = self.__y_sup_izq - unidades
         nuevo_y_inf_der = self.__y_inf_der - unidades
-        if nuevo_y_inf_der <= self.__y_sup_izq:
-            raise Exception('El valor de y del vértice inferior derecho debe ser mayor al valor de y del vértice superior izquierdo')
+
+        if nuevo_y_sup_izq < 0:
+            raise Exception('Ventana fuera de rango')
         else:
+            self.__y_sup_izq = nuevo_y_sup_izq
             self.__y_inf_der = nuevo_y_inf_der
