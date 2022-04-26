@@ -29,7 +29,7 @@ def menu(datos):
               "1.Mostrar para cada variable el día y hora de menor y mayor valor.\n"
               "2.Indicar la temperatura promedio mensual por cada hora.\n"
               "3.Dado un número de día listar los valores de las tres variables para cada hora del día dado. El listado debe tener el siguiente formato.\n"
-              "0.Salir")
+              "0.Salir.")
         opt = int(input('Ingrese una opcion: '))
         menu.option(opt)
         exit = opt==0
